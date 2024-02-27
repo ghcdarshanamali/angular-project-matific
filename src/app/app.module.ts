@@ -21,16 +21,16 @@ import { LoadingSpinnerComponent } from './modules/loading-spinner/loading-spinn
     HomeComponent,
     LoginComponent,
     LoadingSpinnerComponent,
-    DropDownDirective
+    DropDownDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
