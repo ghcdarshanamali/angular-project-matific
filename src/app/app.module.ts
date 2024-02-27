@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './modules/loading-spinner/loading-spinner.component';
+import { ProgressBarComponent } from './modules/snapshot-report/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { LoadingSpinnerComponent } from './modules/loading-spinner/loading-spinn
     LoginComponent,
     LoadingSpinnerComponent,
     DropDownDirective,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,

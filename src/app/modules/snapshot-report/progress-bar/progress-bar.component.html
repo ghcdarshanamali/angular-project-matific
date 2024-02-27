@@ -1,0 +1,49 @@
+<div class="row">
+    <h4 class="heading">Overall results for the period {{ startDate }} - {{ endDate }}</h4>
+    <div class="col-md-12">
+      <div class="progress">
+        <div
+          class="progress-bar grey"
+          [style.width]="unassignedPercentage + '%'"
+        ></div>
+        <div
+          class="progress-bar red"
+          [style.width]="weakPercentage + '%'"
+        ></div>
+        <div
+          class="progress-bar orange"
+          [style.width]="okPercentage + '%'"
+        ></div>
+        <div
+          class="progress-bar skyblue"
+          [style.width]="goodPercentage + '%'"
+        ></div>
+        <div
+          class="progress-bar green"
+          [style.width]="excellentPercentage + '%'"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-2">
+      <div class="box grey"></div>
+      Unassigned({{ unassignedPercentage | number : "1.0-0" }}%)
+    </div>
+    <div class="col-xs-2">
+      <div class="box red"></div>
+      Weak({{ weakPercentage | number : "1.0-0" }}%)
+    </div>
+    <div class="col-xs-2">
+      <div class="box orange"></div>
+      OK({{ okPercentage | number : "1.0-0" }}%)
+    </div>
+    <div class="col-xs-2">
+      <div class="box skyblue"></div>
+      Good({{ goodPercentage | number : "1.0-0" }}%)
+    </div>
+    <div class="col-xs-2">
+      <div class="box green"></div>
+      Excellent({{ excellentPercentage | number : "1.0-0" }}%)
+    </div>
+  </div>

@@ -15,7 +15,7 @@
             class="form-control"
             [(ngModel)]="className"
             name="class"
-            placeholder="Class"
+            placeholder="Select a Class"
             (ngModelChange)="loadStudents()"
           >
             <option
@@ -34,10 +34,10 @@
             class="form-control"
             [(ngModel)]="studentName"
             name="student"
-            placeholder="Class"
+            placeholder="Select a Student"
             (ngModelChange)="loadReports('student')"
           >
-            <option *ngFor="let student of studentsArray" [ngValue]="student">
+          <option *ngFor="let student of studentsArray" [ngValue]="student">
               {{ student }}
             </option>
           </select>
@@ -58,60 +58,7 @@
 </section>
 <section>
   <div class="container">
-    <div class="row">
-      <h4>Overall results for the period {{ startDate }} - {{ endDate }}</h4>
-      <div class="col-md-12">
-        <div class="progress">
-          <div
-            class="progress-bar"
-            style="background-color: grey"
-            [style.width]="unassignedPercentage + '%'"
-          ></div>
-          <div
-            class="progress-bar"
-            style="background-color: red"
-            [style.width]="weakPercentage + '%'"
-          ></div>
-          <div
-            class="progress-bar"
-            style="background-color: orange"
-            [style.width]="okPercentage + '%'"
-          ></div>
-          <div
-            class="progress-bar"
-            style="background-color: skyblue"
-            [style.width]="goodPercentage + '%'"
-          ></div>
-          <div
-            class="progress-bar"
-            style="background-color: green"
-            [style.width]="excellentPercentage + '%'"
-          ></div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-xs-2">
-        <div class="box grey"></div>
-        Unassigned({{ unassignedPercentage | number : "1.0-0" }}%)
-      </div>
-      <div class="col-xs-2">
-        <div class="box red"></div>
-        Weak({{ weakPercentage | number : "1.0-0" }}%)
-      </div>
-      <div class="col-xs-2">
-        <div class="box orange"></div>
-        OK({{ okPercentage | number : "1.0-0" }}%)
-      </div>
-      <div class="col-xs-2">
-        <div class="box skyblue"></div>
-        ({{ goodPercentage | number : "1.0-0" }}%)
-      </div>
-      <div class="col-xs-2">
-        <div class="box green"></div>
-        Excellent({{ excellentPercentage | number : "1.0-0" }}%)
-      </div>
-    </div>
+    <app-progress-bar [excellentPercent]="excellentPercentage" [goodPercent]="goodPercentage" [okPercent]="okPercentage" [weakPercent]="weakPercentage" [unassignedPercent]="unassignedPercentage" [startDate]="startDate" [endDate]="endDate" ></app-progress-bar>
   </div>
 </section>
 <section>

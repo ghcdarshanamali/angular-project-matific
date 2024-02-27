@@ -10,6 +10,7 @@ import { ClassOfStudents } from '../../core/models/class.model';
 export class SnapshotReportComponent implements OnInit {
   public classesArray: ClassOfStudents[] = [];
   public studentsArray: string[] = [];
+  public reportsArrayInit: any[];
   public reportsArray: any[];
   public className: number;
   public studentName: string;
@@ -58,27 +59,27 @@ export class SnapshotReportComponent implements OnInit {
     let tempArray = [];
     switch (type) {
       case 'class':
-        this.reportsArray = this.snapshotReoprtsService.fetchReports2();
         this.studentsArray.forEach((student) => {
           tempArray.push(
-            ...this.reportsArray.filter((s) => s.student === student)
+            ...this.reportsArrayInit.filter((s) => s.student === student)
           );
         });
         break;
       case 'student':
         tempArray.push(
-          ...this.reportsArray.filter((s) => s.student === this.studentName)
+          ...this.reportsArrayInit.filter((s) => s.student === this.studentName)
         );
         break;
-      default:
-        tempArray = this.snapshotReoprtsService.fetchReports2();
+        default:
+          tempArray = this.reportsArrayInit;
     }
     this.reportsArray = tempArray;
     this.calculateProgress();
   }
 
   public getReports() {
-    this.reportsArray = this.snapshotReoprtsService.fetchReports2();
+    this.reportsArrayInit = this.snapshotReoprtsService.fetchReports2();
+    this.reportsArray = this.reportsArrayInit;
     this.calculateProgress();
     /* this.snapshotReoprtsService.fetchReports().subscribe(
       (results) => {

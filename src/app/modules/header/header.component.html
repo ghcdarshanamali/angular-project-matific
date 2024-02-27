@@ -16,9 +16,8 @@
         </li>
         <li class="dropdown" appDropDown *ngIf="isAuthenticated">
           <a class="dropdown-toggle" role="button"
-            ><p>Welcome {{ firstName }}</p>
-            <span class="caret"></span
-          ></a>
+            ><p class="welcome-dropdown">Welcome {{ firstName }} <span class="caret"></span></p>
+          </a>
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
           </ul>
