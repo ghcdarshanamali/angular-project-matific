@@ -1,0 +1,44 @@
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    clear: both;
+    margin-right: 10px;
+  }
+  
+  .orange {
+    background-color: orange;
+  }
+
+  .red {
+    background-color: red;
+  }
+  
+  .green {
+    background-color: green;
+  }
+  .skyblue {
+    background-color: skyblue;
+  }
+  .grey {
+    background-color: grey;
+  }
+
+  .container{
+    margin-bottom: 30px;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #DDD;
+  }
+  
+  tr:hover {background-color: #D6EEEE;}
