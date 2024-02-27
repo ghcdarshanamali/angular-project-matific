@@ -34,7 +34,12 @@ export class SnapshotReportComponent implements OnInit {
     this.snapshotReoprtsService
       .fetchClassesAndStudents()
       .subscribe((results) => {
-        this.classesArray = results;
+        if(results.length > 0) {
+          this.classesArray = results;
+        } else {
+          this.classesArray = [];
+        }
+        
       });
   }
 

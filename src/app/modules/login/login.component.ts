@@ -13,6 +13,7 @@ export class LoginComponent {
   public isLoading = false;
   public errorMessage : string = null;
   private response : AuthResponseData;
+  public loginForm: NgForm;
 
 
   constructor(private authService: AuthService, private router: Router){}

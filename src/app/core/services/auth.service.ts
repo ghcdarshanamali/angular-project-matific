@@ -1,4 +1,3 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Subject, throwError } from 'rxjs';
 import * as bcrypt from 'bcryptjs';
@@ -29,7 +28,7 @@ export class AuthService {
   private timestamp;
   private key: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private router: Router) {}
 
   /*Login/SignUp - both fuctions use the same method and the seperate implenetion for each fuctionality was
      implemented in the condtion blocks(if-else)*/
@@ -68,7 +67,7 @@ export class AuthService {
         this.user.next(null);
       } else {
         this.userList.push(this.userData);
-        this.response = new AuthResponseData(true, 'Success');
+        this.response = new AuthResponseData(true, Messages.SUCCESS);
         this.user.next(this.userData);
         localStorage.setItem('userData', JSON.stringify(this.userData));
       }
