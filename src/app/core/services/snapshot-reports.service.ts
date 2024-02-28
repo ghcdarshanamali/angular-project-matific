@@ -16,7 +16,7 @@ export class SnapshotReportsService {
   public fetchClassesAndStudents(): Observable<ClassOfStudents[]> {
     return this.http.get<ClassOfStudents[]>(this.CLASS_STUDENTS_URL);
   }
-
+//fetch the report data from the hardcoded json
   public fetchReports(): Observable<Report[]> {
     return this.http
       .get<Report[]>(
