@@ -10,8 +10,8 @@ import { ClassOfStudents } from '../../core/models/class.model';
 export class SnapshotReportComponent implements OnInit {
   public classesArray: ClassOfStudents[] = [];
   public studentsArray: string[] = [];
-  public reportsArrayInit: any[];
-  public reportsArray: any[];
+  public reportsArrayInit: any[] = [];
+  public reportsArray: any[] = [];
   public className: number;
   public studentName: string;
   public startDate: string = '2018-10-01';
@@ -35,12 +35,11 @@ export class SnapshotReportComponent implements OnInit {
     this.snapshotReoprtsService
       .fetchClassesAndStudents()
       .subscribe((results) => {
-        if(results.length > 0) {
+        if (results.length > 0) {
           this.classesArray = results;
         } else {
           this.classesArray = [];
         }
-        
       });
   }
 
@@ -70,23 +69,29 @@ export class SnapshotReportComponent implements OnInit {
           ...this.reportsArrayInit.filter((s) => s.student === this.studentName)
         );
         break;
-        default:
-          tempArray = this.reportsArrayInit;
+      default:
+        tempArray = this.reportsArrayInit;
     }
     this.reportsArray = tempArray;
     this.calculateProgress();
   }
 
-  public getReports() {
+  /* public getReports2() {
     this.reportsArrayInit = this.snapshotReoprtsService.fetchReports2();
     this.reportsArray = this.reportsArrayInit;
     this.calculateProgress();
-    /* this.snapshotReoprtsService.fetchReports().subscribe(
-      (results) => {
-        this.reportsArray = results;
-       
+  } */
+
+  public getReports() {
+    this.snapshotReoprtsService.fetchReports().subscribe((results) => {
+      if (results.length > 0) {
+        this.reportsArrayInit = results;
+        this.reportsArray = this.reportsArrayInit;
+        this.calculateProgress();
+      } else {
+        this.reportsArrayInit = [];
       }
-    ); */
+    });
   }
   //get the average of the marks.
   public getAverage(values: number[]) {
@@ -104,9 +109,11 @@ export class SnapshotReportComponent implements OnInit {
   //calculate the progress for the progress bar
   public calculateProgress() {
     let tempArray = [];
-    this.reportsArray.forEach((item) => {
-      tempArray.push(this.getAverage(item.attempts.values));
-    });
+    if (this.reportsArray.length > 0) {
+      this.reportsArray.forEach((item) => {
+        tempArray.push(this.getAverage(item.attempts.values));
+      });
+    }
     this.excellentPercentage = this.findPercentage(90, 100, tempArray);
     this.goodPercentage = this.findPercentage(80, 90, tempArray);
     this.okPercentage = this.findPercentage(60, 80, tempArray);

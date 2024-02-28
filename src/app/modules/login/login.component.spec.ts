@@ -36,7 +36,7 @@ describe('LoginComponent', () => {
     
   });
 
-  it('should set error msg on submit error',()=>{
+  it('should set error msg on submit error', fakeAsync(() => {
 
     let authService = fixture.debugElement.injector.get(
       AuthService
@@ -44,11 +44,11 @@ describe('LoginComponent', () => {
     spyOn(
       authService,
       'loginOrSignUp'
-    ).and.returnValue({success: false, messsage: "Fail"});
+    ).and.returnValue({success: false, messsage: "fail"});
    
     //component.onSubmit();
     tick(1000);
-    expect(component.errorMessage).toEqual("Fail");
+    expect(component.errorMessage).toEqual("fail");
     
- });
+ }));
 });
