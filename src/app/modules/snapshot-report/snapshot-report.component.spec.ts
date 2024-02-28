@@ -18,7 +18,36 @@ describe('SnapshotReportComponent', () => {
   let component: SnapshotReportComponent;
   let fixture: ComponentFixture<SnapshotReportComponent>;
   let service: SnapshotReportsService;
-
+  const testClass : ClassOfStudents[] = [
+    {"id":1,"students":["Student 1","Student 2"],"name":"Class 1"},
+    {"id":2,"students":["Student 3","Student 4"],"name":"Class 2"}
+  ];
+const testActivities : any [] = [
+  {
+    id: 1,
+    content: 'Pile Up',
+    attempts: {
+      weeks: ['27/09/18', '23/09/18'],
+      values: [87, 67],
+    },
+    student: 'Student 0',
+    time: '30m',
+    skill: 'Count to 10',
+    type: 'Activity',
+  },
+  {
+    id: 2,
+    content: 'Pile Up',
+    attempts: {
+      weeks: ['27/09/18', '23/09/18'],
+      values: [87, 67],
+    },
+    student: 'Student 1',
+    time: '30m',
+    skill: 'Count to 10',
+    type: 'Activity',
+  },
+]
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HttpClientModule, FormsModule],
@@ -30,100 +59,67 @@ describe('SnapshotReportComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     service = TestBed.inject(SnapshotReportsService);
+    
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should call getClassesAndStudents and get values', fakeAsync(() => {
+  it('should check the average', () => {
+    expect(component.getAverage([40,60,80])).toBe(60);
+  });
 
-    const testClass : ClassOfStudents[] = [
-      {"id":1,"students":["Student 1","Student 2"],"name":"Class 1"},
-      {"id":2,"students":["Student 3","Student 4"],"name":"Class 2"}
-    ];
+  it('should check the the percentage', () => {
+    expect(component.findPercentage(60,80,[40,65,80,90])).toEqual(50);
+  });
 
-    let spy = spyOn(service, 'fetchClassesAndStudents').and.returnValue(Rx.of(testClass));
-
+  it('should call getClassesAndStudents and get data and check length', fakeAsync(() => {
+  
+    spyOn(service,"fetchClassesAndStudents").and.callFake(()=> {
+      return Rx.of(testClass)
+    });
     component.getClassesAndStudents();
+    expect(component.classesArray).toEqual(testClass);
     tick(1000);
-    expect(component.reportsArrayInit).toBeDefined();
-    expect(component.reportsArrayInit.length).toEqual(2);
-  }));
-
+    expect(component.classesArray).toBeDefined();
+    expect(component.classesArray.length).toEqual(2);
+  }
+  ));
+  
   it('should call getClassesAndStudents and get response as empty array', fakeAsync(() => {
-    let snapShotService = fixture.debugElement.injector.get(
-      SnapshotReportsService
-    );
-    let spy_fetchClassesAndStudents = spyOn(
-      snapShotService,
+   
+    spyOn(
+      service,
       'fetchClassesAndStudents'
     ).and.callFake(() => {
       return Rx.of([]).pipe(delay(100));
     });
-    fixture.detectChanges();
     component.getClassesAndStudents();
     tick(100);
-    expect(component.getClassesAndStudents).toEqual([]);
-  }));
-
-  it('should call getClassesAndStudents and get response as array', fakeAsync(() => {
-    let snapShotService = fixture.debugElement.injector.get(
-      SnapshotReportsService
-    );
-    let spy_fetchClassesAndStudents = spyOn(
-      snapShotService,
-      'fetchClassesAndStudents'
-    ).and.callFake(() => {
-      return Rx.of([
-        { id: 1, name: 'Class 1', students: ['Student 1', 'Student 2'] },
-      ]).pipe(delay(2000));
-    });
-    component.getClassesAndStudents();
-    tick(1000);
-
-    expect(component.getClassesAndStudents).toEqual([
-      { id: 1, name: 'Class 1', students: ['Student 1', 'Student 2'] },
-    ]);
+    expect(component.classesArray).toEqual([]);
   }));
 
   it('should call getReports and get response as empty array', fakeAsync(() => {
-    let snapShotService = fixture.debugElement.injector.get(
-      SnapshotReportsService
-    );
-    let spy_getReports = spyOn(snapShotService, 'fetchReports').and.callFake(()=> {
+    
+    spyOn(service, 'fetchReports').and.callFake(()=> {
       return Rx.of([]).pipe(delay(100));
     });
-    fixture.detectChanges();
     component.getReports();
-    fixture.detectChanges();
     tick(100);
-    expect(component.getReports).toEqual([]);
+    expect(component.reportsArrayInit).toEqual([]);
   }));
 
   it('should call getReports and get response as array', fakeAsync(() => {
-    let snapShotService = fixture.debugElement.injector.get(
-      SnapshotReportsService
-    );
-    let spy_getReports = spyOn(snapShotService, 'fetchReports').and.callFake(
+    let spy = spyOn(service, "fetchReports").and.callFake(
       () => {
-        return Rx.of([]).pipe(delay(2000));
+        return Rx.of(testActivities);
       });
+      console.log("spy",spy)
     component.getReports();
     tick(1000);
-    expect(component.getReports).toEqual([
-      {
-        id: 1,
-        content: 'Pile Up',
-        attempts: {
-          weeks: ['27/09/18', '23/09/18'],
-          values: [87, 67],
-        },
-        student: 'Student 0',
-        time: '30m',
-        skill: 'Count to 10',
-        type: 'Activity',
-      },
-    ]);
+    console.log(testActivities)
+    expect(component.reportsArrayInit).toEqual(testActivities);
+    expect(component.reportsArrayInit.length).toBeGreaterThan(0);
   }));
 });

@@ -11,7 +11,7 @@ export class SnapshotReportsService {
   public CLASS_STUDENTS_URL: string =
     'https://ljifg6p8cd.execute-api.us-east-1.amazonaws.com/production/matific-test-classes';
 
-  constructor(private http: HttpClient, private location: Location) {}
+  constructor(public http: HttpClient, private location: Location) {}
 
   public fetchClassesAndStudents(): Observable<ClassOfStudents[]> {
     return this.http.get<ClassOfStudents[]>(this.CLASS_STUDENTS_URL);

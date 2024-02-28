@@ -4,7 +4,9 @@ I utilized the given endpoints. However, the endpoint(https://ljifg6p8cd.execute
 
 Part 1 : Login/Signup => I have utilized the same user interface for both functions and the user details will be stored in a local array. The login option is on the header. you may use existing credentials in the local array or can sign up.
 
-Part 2 : When navigating to the page, all the details will be loaded to the table and you can filter using, - Class: which shows all the activities of the students in that selected class - Student: which shows all the activities of that selected student
+Part 2 : When navigating to the page, all the details will be loaded to the table and you can filter using, 
+- Class: which shows all the activities of the students in that selected class 
+- Student: which shows all the activities of that selected student
 
 I made 2 assumptions 
 -  The average mark of all the attempts will be the Results 
