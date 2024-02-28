@@ -1,0 +1,33 @@
+@import '../../.././../assets/scss/variables.scss';
+.box {
+    float: left;
+    height: 20px;
+    width: 20px;
+    margin-bottom: 15px;
+    border: 1px solid transparent;
+    clear: both;
+    margin-right: 10px;
+  }
+  .heading{
+    margin-left: 15px;
+  }
+  @mixin changeColor($color) {
+    background-color : $color;
+  }
+  .grey {
+    @include changeColor($grey);
+  }
+  .red {
+    @include changeColor($red);
+  }
+  .orange {
+    @include changeColor($orange);
+  }
+  .green {
+    @include changeColor($green);
+  }
+  .skyblue {
+    @include changeColor($blue);
+  }
+  
+  

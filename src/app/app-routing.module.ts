@@ -6,16 +6,19 @@ import { LoginComponent } from './modules/login/login.component';
 import { IsAuthGuard } from './core/services/auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'snapshot-reports', component: SnapshotReportComponent,  canActivate: [IsAuthGuard]},
-  {path: '**', redirectTo: '/home'}
-
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'snapshot-reports',
+    component: SnapshotReportComponent,
+    canActivate: [IsAuthGuard],
+  },
+  { path: '**', redirectTo: '/home' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

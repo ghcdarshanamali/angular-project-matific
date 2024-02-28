@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoadingSpinnerComponent } from './modules/loading-spinner/loading-spinner.component';
+import { ProgressBarComponent } from './modules/snapshot-report/progress-bar/progress-bar.component';
 
 @NgModule({
   declarations: [
@@ -21,16 +22,17 @@ import { LoadingSpinnerComponent } from './modules/loading-spinner/loading-spinn
     HomeComponent,
     LoginComponent,
     LoadingSpinnerComponent,
-    DropDownDirective
+    DropDownDirective,
+    ProgressBarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

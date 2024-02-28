@@ -1,7 +1,5 @@
-export class ClassAndStudents{
-
-    id: number;
-    name: string;
-    students : string[];
-
+export class ClassOfStudents {
+  id: number;
+  name: string;
+  students: string[];
 }

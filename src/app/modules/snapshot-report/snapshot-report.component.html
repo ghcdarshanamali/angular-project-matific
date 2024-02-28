@@ -1,89 +1,89 @@
 <section>
-    <div class="container">
-        <div class="row">
-            <h2>Reporting - Student Snapshot</h2>
-        </div>
+  <div class="container">
+    <div class="row">
+      <h2>Reporting - Student Snapshot</h2>
     </div>
+  </div>
 </section>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="input-group">
-                    <label for="class">Class</label>
-                    <select class="form-control" [(ngModel)]="className" name="class" placeholder="Class" (ngModelChange)="loadStudents()">
-                        <option *ngFor="let classNames of classesArray" [ngValue]="classNames.id">{{classNames.name}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="input-group">
-                    <label for="student">Student</label>
-                    <select class="form-control" [(ngModel)]="studentName" name="student" placeholder="Class" (ngModelChange)="loadReports('student')">
-                        <option *ngFor="let student of studentsArray" [ngValue]="student">{{student}}</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <label for="name">Date Range</label>
-                    <div class="input-group input-daterange">
-                        <input type="date" class="form-control" value="2018-10-01">
-                        <div class="input-group-addon">to</div>
-                        <input type="date" class="form-control" value="2017-10-01">
-                    </div>
-                </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="input-group">
+          <label for="class">Class</label>
+          <select
+            class="form-control"
+            [(ngModel)]="className"
+            name="class"
+            placeholder="Select a Class"
+            (ngModelChange)="loadStudents()"
+          >
+            <option
+              *ngFor="let classNames of classesArray"
+              [ngValue]="classNames.id"
+            >
+              {{ classNames.name }}
+            </option>
+          </select>
         </div>
+      </div>
+      <div class="col-md-3">
+        <div class="input-group">
+          <label for="student">Student</label>
+          <select
+            class="form-control"
+            [(ngModel)]="studentName"
+            name="student"
+            placeholder="Select a Student"
+            (ngModelChange)="loadReports('student')"
+          >
+          <option *ngFor="let student of studentsArray" [ngValue]="student">
+              {{ student }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="input-group">
+          <label for="name">Date Range</label>
+          <div class="input-group input-daterange">
+            <input type="date" class="form-control" value="2018-10-01" />
+            <div class="input-group-addon">to</div>
+            <input type="date" class="form-control" value="2017-10-01" />
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 <section>
-    <div class="container">
-        <div class="row">
-            <h4>Overall results for the period {{startDate}} - {{endDate}}</h4>
-            <div class="col-md-12">
-                <div class="progress">
-                    <div class="progress-bar" style="background-color: grey" [style.width]="unassignedPercentage + '%'"></div>
-                    <div class="progress-bar" style="background-color: red" [style.width]="weakPercentage + '%'"></div>
-                    <div class="progress-bar" style="background-color: orange" [style.width]="okPercentage + '%'"></div>
-                    <div class="progress-bar" style="background-color: skyblue" [style.width]="goodPercentage + '%'"></div>
-                    <div class="progress-bar" style="background-color: green" [style.width]="excellentPercentage + '%'"></div>
-                  </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2"><div class='box grey'></div>Unassigned({{unassignedPercentage | number: '1.0-0'}}%)</div>
-            <div class="col-xs-2"><div class='box red'></div>Weak({{weakPercentage | number: '1.0-0'}}%)</div>
-            <div class="col-xs-2"><div class='box orange'></div>OK({{okPercentage | number: '1.0-0'}}%)</div>
-            <div class="col-xs-2"><div class='box skyblue'></div>({{goodPercentage | number: '1.0-0'}}%)</div>
-            <div class="col-xs-2"><div class='box green'></div>Excellent({{excellentPercentage | number: '1.0-0'}}%)</div>
-        </div>
-    </div>
+  <div class="container">
+    <app-progress-bar [excellentPercent]="excellentPercentage" [goodPercent]="goodPercentage" [okPercent]="okPercentage" [weakPercent]="weakPercentage" [unassignedPercent]="unassignedPercentage" [startDate]="startDate" [endDate]="endDate" ></app-progress-bar>
+  </div>
 </section>
 <section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="table-responsive">
-                <table class="table">
-                    <th>Date Completed</th>
-                    <th>Content</th>
-                    <th>Type</th>
-                    <th>Skill</th>
-                    <th>Result</th>
-                    <th>Time Spent</th>
-                    <tr *ngFor="let row of reportsArray">
-                        <td>{{row.attempts.weeks[0]}}</td>
-                        <td>{{row.content}}</td>
-                        <td>{{row.type}}</td>
-                        <td>{{row.skill}}</td>
-                        <td>{{getAverage(row.attempts.values) | number:'1.0-2'}}%</td>
-                        <td>{{row.time}}</td>
-                    </tr>
-                </table>
-            </div>
-            </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="table">
+            <th>Date Completed</th>
+            <th>Content</th>
+            <th>Type</th>
+            <th>Skill</th>
+            <th>Result</th>
+            <th>Time Spent</th>
+            <tr *ngFor="let row of reportsArray">
+              <td>{{ row.attempts.weeks[0] }}</td>
+              <td>{{ row.content }}</td>
+              <td>{{ row.type }}</td>
+              <td>{{ row.skill }}</td>
+              <td>{{ getAverage(row.attempts.values) | number : "1.0-2" }}%</td>
+              <td>{{ row.time }}</td>
+            </tr>
+          </table>
         </div>
+      </div>
     </div>
-    
+  </div>
 </section>

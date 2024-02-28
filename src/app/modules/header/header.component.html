@@ -1,22 +1,28 @@
-<nav class="navbar navbar-default"> 
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand">Matific Reports</a>
-        </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
-            <li routerLinkActive="active" *ngIf="isAuthenticated"><a routerLink="/snapshot-reports">Snapshot Reports</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li routerLinkActive="active" *ngIf="!isAuthenticated"><a routerLink="/login">Login</a></li>
-            <li class="dropdown" appDropDown *ngIf="isAuthenticated">
-                <a class="dropdown-toggle" role="button">Welcome {{firstName}} <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a style="cursor: pointer;" (click)="onLogout()">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-      </div>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand">Matific Reports</a>
     </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li routerLinkActive="active"><a routerLink="/home">Home</a></li>
+        <li routerLinkActive="active" *ngIf="isAuthenticated">
+          <a routerLink="/snapshot-reports">Snapshot Reports</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li routerLinkActive="active" *ngIf="!isAuthenticated">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li class="dropdown" appDropDown *ngIf="isAuthenticated">
+          <a class="dropdown-toggle" role="button"
+            ><p class="welcome-dropdown">Welcome {{ firstName }} <span class="caret"></span></p>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a style="cursor: pointer" (click)="onLogout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

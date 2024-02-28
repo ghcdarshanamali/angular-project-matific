@@ -9,19 +9,20 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  isLoginMode = true;
-  isLoading = false;
-  errorMessage : string = null;
-  response : AuthResponseData;
+  public isLoginMode = true;
+  public isLoading = false;
+  public errorMessage : string = null;
+  private response : AuthResponseData;
+  public loginForm: NgForm;
 
 
   constructor(private authService: AuthService, private router: Router){}
 
-  onSwitchMode(){
+  public onSwitchMode(){
     this.isLoginMode = !this.isLoginMode;
 }
 
-onSubmit(form: NgForm){
+public onSubmit(form: NgForm){
 
     this.errorMessage = null; 
     this.isLoading = true;
